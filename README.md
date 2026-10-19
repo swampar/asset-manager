@@ -31,10 +31,9 @@ Run the checks with `python tests.py`.
 - Flask: small and readable, easy to explain. SQLite: no setup, a single file. Plain SQL instead of an ORM so every query is visible.
 
 ## Branding
-All colours are CSS variables at the top of `static/style.css`. The current green and gold are a placeholder; I could not find the school's official colours, so replace the values there.
+All colours are CSS variables at the top of `static/style.css`. The current green and gold are a placeholder.
 
-## Not done (honest list)
-- Only one login role (no admin vs viewer), no password change screen, no CSRF protection
+## Not done 
+- Only one login role (no admin vs viewer), no password change screen.
 - No delete or archive for assets or staff, no staff edit screen
-- No pagination, so very large lists would be slow
 - Not deployed; runs locally only
