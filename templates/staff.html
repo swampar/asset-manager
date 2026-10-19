@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}<h1>Staff</h1><div class="actions"><a class="btn" href="{{ url_for('staff_new') }}">Add staff</a></div>
+<div class="scroll"><table><tr><th>Name</th><th>Email</th><th>Department</th><th>Assets held</th></tr>
+{% for s in rows %}<tr><td><a href="{{ url_for('staff_detail', staff_id=s.id) }}">{{ s.name }}</a></td><td>{{ s.email }}</td><td>{{ s.department }}</td><td>{{ s.held }}</td></tr>
+{% else %}<tr><td colspan="4" class="muted">No staff yet.</td></tr>{% endfor %}</table></div>{% endblock %}

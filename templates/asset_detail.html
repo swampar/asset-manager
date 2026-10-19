@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}<h1>{{ a.name }} <span class="badge {{ a.status|replace(' ','-') }}">{{ a.status }}</span></h1>
+<div class="card"><p>Tag <b>{{ a.asset_tag }}</b> · Type {{ a.type }} · Serial {{ a.serial_number }}</p>
+<a class="btn alt" href="{{ url_for('asset_edit', asset_id=a.id) }}">Edit</a> <a class="btn alt" href="{{ url_for('assets') }}">Back</a></div>
+<h2>Assignment history</h2><div class="scroll"><table><tr><th>Staff</th><th>Assigned</th><th>Returned</th><th>Note</th></tr>
+{% for h in history %}<tr><td><a href="{{ url_for('staff_detail', staff_id=h.staff_id) }}">{{ h.staff_name }}</a></td><td>{{ h.assigned_at }}</td>
+<td>{{ h.returned_at or 'Still held' }}</td><td>{{ h.note or '' }}</td></tr>
+{% else %}<tr><td colspan="4" class="muted">Never assigned.</td></tr>{% endfor %}</table></div>{% endblock %}

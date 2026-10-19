@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block body %}<h1>{{ 'Edit asset' if editing else 'Add asset' }}</h1>
+<form class="card" method="post" style="max-width:560px">
+<label>Name</label><input name="name" value="{{ a.name }}" required>
+<label>Type</label><select name="type">{% for t in TYPES %}<option {{ 'selected' if t==a.type }}>{{ t }}</option>{% endfor %}</select>
+<label>Asset tag</label><input name="asset_tag" value="{{ a.asset_tag }}" required>
+<label>Serial number</label><input name="serial_number" value="{{ a.serial_number }}" required>
+<label>Status</label>
+{% if locked %}<input value="assigned" disabled><p class="muted">Status changes when the asset is returned.</p>
+{% else %}<select name="status"><option value="available" {{ 'selected' if a.status!='under repair' }}>available</option><option value="under repair" {{ 'selected' if a.status=='under repair' }}>under repair</option></select>{% endif %}
+<p><button class="btn">Save</button> <a class="btn alt" href="{{ url_for('assets') }}">Cancel</a></p></form>{% endblock %}

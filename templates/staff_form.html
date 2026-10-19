@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}<h1>Add staff member</h1><form class="card" method="post" style="max-width:560px">
+<label>Name</label><input name="name" value="{{ s.name }}" required><label>Email</label><input name="email" type="email" value="{{ s.email }}" required>
+<label>Department</label><input name="department" value="{{ s.department }}" required>
+<p><button class="btn">Save</button> <a class="btn alt" href="{{ url_for('staff_list') }}">Cancel</a></p></form>{% endblock %}

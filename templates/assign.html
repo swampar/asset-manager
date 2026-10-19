@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block body %}<h1>Assign / Return</h1><div class="row">
+<form class="card" method="post"><h2>Assign an asset</h2><input type="hidden" name="action" value="assign">
+<label>Available asset</label><select name="asset_id" required>{% for a in available %}<option value="{{ a.id }}">{{ a.asset_tag }} - {{ a.name }}</option>{% endfor %}</select>
+<label>Staff member</label><select name="staff_id" required>{% for s in staff %}<option value="{{ s.id }}">{{ s.name }} ({{ s.department }})</option>{% endfor %}</select>
+<label>Note (optional)</label><input name="note"><p><button class="btn" {{ 'disabled' if not available or not staff }}>Assign</button></p></form>
+<form class="card" method="post"><h2>Return an asset</h2><input type="hidden" name="action" value="return">
+<label>Assigned asset</label><select name="asset_id" required>{% for a in out %}<option value="{{ a.id }}">{{ a.asset_tag }} - {{ a.name }} (held by {{ a.holder }})</option>{% endfor %}</select>
+<label>After return, mark as</label><select name="after"><option value="available">available</option><option value="under repair">under repair</option></select>
+<p><button class="btn" {{ 'disabled' if not out }}>Mark returned</button></p></form></div>{% endblock %}

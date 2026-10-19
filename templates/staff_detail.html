@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}<h1>{{ s.name }}</h1><p class="muted">{{ s.email }} · {{ s.department }}</p>
+<h2>Currently holding</h2><div class="scroll"><table><tr><th>Tag</th><th>Name</th><th>Type</th><th>Since</th></tr>
+{% for a in held %}<tr><td><a href="{{ url_for('asset_detail', asset_id=a.id) }}">{{ a.asset_tag }}</a></td><td>{{ a.name }}</td><td>{{ a.type }}</td><td>{{ a.assigned_at }}</td></tr>
+{% else %}<tr><td colspan="4" class="muted">Nothing right now.</td></tr>{% endfor %}</table></div>
+<h2>Previously held</h2><div class="scroll"><table><tr><th>Tag</th><th>Name</th><th>Assigned</th><th>Returned</th></tr>
+{% for a in past %}<tr><td><a href="{{ url_for('asset_detail', asset_id=a.id) }}">{{ a.asset_tag }}</a></td><td>{{ a.name }}</td><td>{{ a.assigned_at }}</td><td>{{ a.returned_at }}</td></tr>
+{% else %}<tr><td colspan="4" class="muted">No past assignments.</td></tr>{% endfor %}</table></div>{% endblock %}

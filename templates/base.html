@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}IT Assets{% endblock %} - Harvest IT Assets</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<header><div class="bar"><span class="brand">Harvest IT Asset Manager</span>
+{% if session.user %}<a href="{{ url_for('assets') }}">Assets</a><a href="{{ url_for('staff_list') }}">Staff</a>
+<a href="{{ url_for('assign') }}">Assign / Return</a><a href="{{ url_for('logout') }}">Log out ({{ session.user }})</a>{% endif %}</div></header>
+<main>{% with msgs = get_flashed_messages(with_categories=true) %}{% for cat, m in msgs %}<div class="flash {{ cat }}">{{ m }}</div>{% endfor %}{% endwith %}
+{% block body %}{% endblock %}</main></body></html>

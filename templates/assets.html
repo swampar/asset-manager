@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block body %}<h1>Assets</h1>
+<div class="actions"><a class="btn" href="{{ url_for('asset_new') }}">Add asset</a>
+<a class="btn alt" href="{{ url_for('export_csv', q=q, status=status, type=type_) }}">Export CSV</a></div>
+<form class="card filters" method="get"><div><label>Search</label><input name="q" value="{{ q }}" placeholder="Name, tag or serial"></div>
+<div><label>Status</label><select name="status"><option value="">All</option>{% for s in STATUSES %}<option {{ 'selected' if s==status }}>{{ s }}</option>{% endfor %}</select></div>
+<div><label>Type</label><select name="type"><option value="">All</option>{% for t in TYPES %}<option {{ 'selected' if t==type_ }}>{{ t }}</option>{% endfor %}</select></div>
+<div><button class="btn">Filter</button></div></form>
+<div class="scroll"><table><tr><th>Asset tag</th><th>Name</th><th>Type</th><th>Serial</th><th>Status</th><th>Held by</th><th></th></tr>
+{% for r in rows %}<tr><td><a href="{{ url_for('asset_detail', asset_id=r.id) }}">{{ r.asset_tag }}</a></td><td>{{ r.name }}</td><td>{{ r.type }}</td><td>{{ r.serial_number }}</td>
+<td><span class="badge {{ r.status|replace(' ','-') }}">{{ r.status }}</span></td>
+<td>{% if r.holder %}<a href="{{ url_for('staff_detail', staff_id=r.holder_id) }}">{{ r.holder }}</a>{% else %}<span class="muted">-</span>{% endif %}</td>
+<td><a href="{{ url_for('asset_edit', asset_id=r.id) }}">Edit</a></td></tr>
+{% else %}<tr><td colspan="7" class="muted">No assets match.</td></tr>{% endfor %}</table></div>{% endblock %}
