@@ -33,6 +33,18 @@ Run the checks with `python tests.py`.
 ## Branding
 All colours are CSS variables at the top of `static/style.css`. The current green and gold are a placeholder.
 
+## Screenshots
+
+**Automated checks passing, then the app starting**
+
+![Tests passing](screenshots/tests-passing.png)
+![App running](screenshots/app-running.png)
+
+**The app**
+
+![Asset list](screenshots/asset-list.png)
+![Assign and return](screenshots/assign-return.png)
+
 ## Not done 
 - Only one login role (no admin vs viewer), no password change screen.
 - No delete or archive for assets or staff, no staff edit screen
